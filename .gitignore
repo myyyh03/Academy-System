@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 ## secret
 .env
 
 
+=======
+>>>>>>> origin/main
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
