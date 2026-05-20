@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cache;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
 public class Course extends BaseEntity {
 
     @NotNull

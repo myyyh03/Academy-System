@@ -17,31 +17,31 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    @Cacheable(value = "courses", key = "'all'")
+   // @Cacheable(value = "courses", key = "'all'")
     public List<CourseDto> getAllCourses(){
         List<Course> courses = courseRepository.findAll();
         return courses.stream().map(CourseDto::new).toList();
     }
 
-    @Cacheable(value = "courses", key = "#id")
+   // @Cacheable(value = "courses", key = "#id")
     public CourseDto getCourseById(Integer id){
         Course course = courseRepository.findById(id).orElseThrow();
         return new CourseDto(course);
     }
 
-    @Caching(
-        put   = { @CachePut(value = "courses", key = "#result.id") },
-        evict = { @CacheEvict(value = "courses", key = "'all'") }
-    )
+//    @Caching(
+//        put   = { @CachePut(value = "courses", key = "#result.id") },
+//        evict = { @CacheEvict(value = "courses", key = "'all'") }
+//    )
     public CourseDto saveCourse(CourseDto courseDto){
         Course savedCourse = courseRepository.save(CourseDto.toEntity(courseDto));
         return new CourseDto(savedCourse);
     }
 
-    @Caching(
-        put   = { @CachePut(value = "courses", key = "#id") },
-        evict = { @CacheEvict(value = "courses", key = "'all'") }
-    )
+//    @Caching(
+//        put   = { @CachePut(value = "courses", key = "#id") },
+//        evict = { @CacheEvict(value = "courses", key = "'all'") }
+//    )
     public CourseDto updateCourseById(Integer id, CourseDto newCourseDto) {
         Course courseToUpdate = courseRepository.findById(id).orElseThrow();
         CourseDto courseDtoToUpdate = new CourseDto(courseToUpdate);
@@ -50,10 +50,10 @@ public class CourseService {
         return new CourseDto(updatedCourse);
     }
 
-    @Caching(evict = {
-        @CacheEvict(value = "courses", key = "#id"),
-        @CacheEvict(value = "courses", key = "'all'")
-    })
+//    @Caching(evict = {
+//        @CacheEvict(value = "courses", key = "#id"),
+//        @CacheEvict(value = "courses", key = "'all'")
+//    })
     public void deleteCourseById(Integer id) {
         courseRepository.deleteById(id);
     }

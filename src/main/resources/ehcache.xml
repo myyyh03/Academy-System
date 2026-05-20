@@ -1,0 +1,11 @@
+<config xmlns="http://www.ehcache.org/v3">
+
+    <cache alias="com.mo7s.academySystem.course.Course">
+        <expiry>
+            <ttl unit="minutes">20</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">100</heap>
+        </resources>
+    </cache>
+</config>
